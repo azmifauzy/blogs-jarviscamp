@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\UserController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,8 +28,6 @@ Route::get('/', function () {
     return view('contents.dashboard', $data);
 });
 
-Route::get('/users', function () {
-    return view('contents.users', [
-        "title" => "Users"
-    ]);
-});
+Route::get('/users', [UserController::class, 'index']);
+
+Route::resource('/categories', CategoryController::class);
