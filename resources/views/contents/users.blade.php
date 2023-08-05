@@ -5,11 +5,17 @@
         <div class="col-12">
         <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3 d-flex justify-content-between">
                 <h6 class="text-white text-capitalize ps-3">Users</h6>
+                <a href="/users/create" class="btn btn-sm btn-secondary me-3">Add Data</a>
             </div>
             </div>
             <div class="card-body px-0 pb-2">
+            @if (session()->has('success'))
+            <div class="alert alert-success mx-3" role="alert">
+                {{ session('success') }}
+            </div>
+            @endif
             <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0">
                 <thead>
@@ -37,8 +43,11 @@
                             <span class="text-secondary text-xs font-weight-bold">{{ Carbon\Carbon::parse($user->created_at)->format('d F Y') }}</span>
                         </td>
                         <td class="align-middle">
-                            <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                            <a href="/users/{{ $user->id }}/edit" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                             Edit
+                            </a>
+                            <a href="/users/{{ $user->id }}" class="font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                            Detail
                             </a>
                         </td>
                     </tr>
